@@ -11,7 +11,7 @@
 #include <thread>
 #include <mutex>
 
-#include "s21_graph.h"
+#include "graph.h"
 
 struct TsmResult {
   std::vector<unsigned> vertices;

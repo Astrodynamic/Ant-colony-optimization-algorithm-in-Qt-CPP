@@ -13,13 +13,13 @@ include_directories(
 
 set(HEADERS
   interface/interface.h
-  graph/s21_graph.h
+  graph/graph.h
   aco/aco.h
 )
 
 set(SOURCES
   interface/interface.cc
-  graph/s21_graph.cc
+  graph/graph.cc
   aco/aco.cc
   main.cc
 )

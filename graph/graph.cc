@@ -1,4 +1,4 @@
-#include "s21_graph.h"
+#include "graph.h"
 
 std::random_device Graph::rd;
 std::default_random_engine Graph::generator(rd());
