@@ -1,15 +1,15 @@
-#ifndef PARALLELS_SRC_ACO_ACO_H_
-#define PARALLELS_SRC_ACO_ACO_H_
+#ifndef ANT_COLONY_OPTIMIZATION_ALGORITHM_ACO_ACO_H_
+#define ANT_COLONY_OPTIMIZATION_ALGORITHM_ACO_ACO_H_
 
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <limits>
-#include <random>
-#include <vector>
-#include <thread>
 #include <mutex>
+#include <random>
+#include <thread>
+#include <vector>
 
 #include "graph.h"
 
@@ -25,7 +25,7 @@ struct TsmResult {
     }
   }
 
-  void CalcDistance(Graph &graph) {
+  void CalcDistance(const Graph &graph) {
     distance = {};
     for (unsigned i = 1U; i < vertices.size(); ++i) {
       distance += graph(vertices[i - 1], vertices[i]);
@@ -39,7 +39,7 @@ class AntNet {
   ~AntNet();
 
   TsmResult AntColonyAlgorithm(unsigned iterations);
-  const unsigned GetIterations() const;
+  unsigned GetIterations() const;
 
   void SetThreadFlag(const bool flag);
 
@@ -67,7 +67,7 @@ class AntNet {
   bool m_thread_flag = false;
 
   void AntMovement();
-  void ClearAntsData(TsmResult &ant);
+  static void ClearAntsData(TsmResult &ant);
 
   void CalculateAttractiveness(Graph &distance);
   unsigned CalcProbability(unsigned ant, unsigned location);
@@ -78,4 +78,4 @@ class AntNet {
   TsmResult BestPath() const;
 };
 
-#endif  // PARALLELS_SRC_ACO_ACO_H_
+#endif  // ANT_COLONY_OPTIMIZATION_ALGORITHM_ACO_ACO_H_

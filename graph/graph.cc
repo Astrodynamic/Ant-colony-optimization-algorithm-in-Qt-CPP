@@ -2,7 +2,8 @@
 
 std::random_device Graph::rd;
 std::default_random_engine Graph::generator(rd());
-std::uniform_real_distribution<double> Graph::distribution(min_random_value, max_random_value);
+std::uniform_real_distribution<double> Graph::distribution(min_random_value,
+                                                           max_random_value);
 
 Graph::Graph() : m_matrix{nullptr}, m_dimension{} {}
 
@@ -13,8 +14,8 @@ Graph::Graph(unsigned dimension) : m_matrix{nullptr}, m_dimension{dimension} {
 Graph::Graph(Graph& graph) : m_dimension{graph.m_dimension} {
   InitMatrix(m_dimension);
 
-  for (int i = 0; i < m_dimension; ++i) {
-    for (int j = 0; j < m_dimension; ++j) {
+  for (unsigned i = 0; i < m_dimension; ++i) {
+    for (unsigned j = 0; j < m_dimension; ++j) {
       m_matrix[i][j] = graph(i, j);
     }
   }
@@ -43,7 +44,7 @@ void Graph::DestroyMatrix() {
   m_matrix = nullptr;
 }
 
-const unsigned Graph::GetDimension() const { return m_dimension; }
+unsigned Graph::GetDimension() const { return m_dimension; }
 
 void Graph::SetDimension(const unsigned dimension) {
   DestroyMatrix();
@@ -64,8 +65,8 @@ Graph& Graph::operator=(const Graph& other) {
     DestroyMatrix();
     m_dimension = other.m_dimension;
     InitMatrix(m_dimension);
-    for (int i = 0; i < m_dimension; ++i) {
-      for (int j = 0; j < m_dimension; ++j) {
+    for (unsigned i = 0; i < m_dimension; ++i) {
+      for (unsigned j = 0; j < m_dimension; ++j) {
         m_matrix[i][j] = other.m_matrix[i][j];
       }
     }
@@ -126,7 +127,7 @@ bool Graph::LoadGraphFromFile(std::string filename) {
   return flag;
 }
 
-bool Graph::LoadGraphToFile(std::string filename) {
+bool Graph::LoadGraphToFile(std::string filename) const {
   std::ofstream file(filename);
 
   bool flag = true;

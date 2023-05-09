@@ -1,10 +1,10 @@
-#ifndef PARALLELS_SRC_GRAPH_S21_GRAPH_H_
-#define PARALLELS_SRC_GRAPH_S21_GRAPH_H_
+#ifndef ANT_COLONY_OPTIMIZATION_ALGORITHM_GRAPH_GRAPH_H_
+#define ANT_COLONY_OPTIMIZATION_ALGORITHM_GRAPH_GRAPH_H_
 
 #include <fstream>
 #include <iostream>
-#include <string>
 #include <random>
+#include <string>
 
 class Graph {
  public:
@@ -14,10 +14,10 @@ class Graph {
   ~Graph();
 
   bool LoadGraphFromFile(std::string filename);
-  bool LoadGraphToFile(std::string filename);
+  bool LoadGraphToFile(std::string filename) const;
   bool ExportGraphToDot(std::string filename) const;
 
-  const unsigned GetDimension() const;
+  unsigned GetDimension() const;
   void SetDimension(const unsigned dimension);
 
   void Fill(double value);
@@ -44,4 +44,4 @@ class Graph {
   void DestroyMatrix();
 };
 
-#endif  // PARALLELS_SRC_GRAPH_S21_GRAPH_H_
+#endif  // ANT_COLONY_OPTIMIZATION_ALGORITHM_GRAPH_GRAPH_H_

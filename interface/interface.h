@@ -1,10 +1,10 @@
-#ifndef PARALLELS_SRC_INTERFACE_INTERFACE_H_
-#define PARALLELS_SRC_INTERFACE_INTERFACE_H_
+#ifndef ANT_COLONY_OPTIMIZATION_ALGORITHM_INTERFACE_INTERFACE_H_
+#define ANT_COLONY_OPTIMIZATION_ALGORITHM_INTERFACE_INTERFACE_H_
 
+#include <chrono>
 #include <functional>
 #include <string>
 #include <vector>
-#include <chrono>
 
 #include "aco.h"
 
@@ -56,14 +56,16 @@ class Interface {
   void InitWithoutThreadMenu();
   void InitComparisonMenu();
 
-  const std::size_t ShowMenu(const std::string &menu, const std::size_t items = 0U);
-  const std::size_t CheckInputItem(const std::size_t count);
+  std::size_t ShowMenu(const std::string &menu, const std::size_t items = 0U);
+  static std::size_t CheckInputItem(const std::size_t count);
 
   bool Exit();
-  bool RunMenu(std::vector<std::function<bool(void)> > & func, MenuItem menu);
+  bool RunMenu(const std::vector<std::function<bool(void)> > &func,
+               MenuItem menu);
 
-  void ShowPath(TsmResult && path);
-  void CheckRunningTime(AntNet &net, const unsigned iterations, const bool thread);
+  static void ShowPath(TsmResult &&path);
+  void CheckRunningTime(AntNet &net, const unsigned iterations,
+                        const bool thread);
 };
 
-#endif  // PARALLELS_SRC_INTERFACE_INTERFACE_H_
+#endif  // ANT_COLONY_OPTIMIZATION_ALGORITHM_INTERFACE_INTERFACE_H_

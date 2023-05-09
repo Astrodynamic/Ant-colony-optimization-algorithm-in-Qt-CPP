@@ -2,7 +2,8 @@
 
 std::random_device AntNet::rd;
 std::default_random_engine AntNet::generator(rd());
-std::uniform_real_distribution<double> AntNet::distribution(min_random_value, max_random_value);
+std::uniform_real_distribution<double> AntNet::distribution(min_random_value,
+                                                            max_random_value);
 
 AntNet::AntNet(Graph &distance, const double init_pheromon_value)
     : m_attractiveness{new Graph(distance.GetDimension())},
@@ -28,7 +29,7 @@ TsmResult AntNet::AntColonyAlgorithm(unsigned iterations) {
     for (unsigned i = 0U; i < iterations; ++i, ++m_iterations) {
       AntMovement();
       std::thread th_up_pheromone(&AntNet::UpdatePheromone, this);
-      std::thread th_set_min_path(&TsmResult::SetMinPath, &result, std::move(BestPath()));
+      std::thread th_set_min_path(&TsmResult::SetMinPath, &result, BestPath());
       th_up_pheromone.join();
       th_set_min_path.join();
     }
@@ -42,7 +43,7 @@ TsmResult AntNet::AntColonyAlgorithm(unsigned iterations) {
   return result;
 }
 
-const unsigned AntNet::GetIterations() const { return m_iterations; }
+unsigned AntNet::GetIterations() const { return m_iterations; }
 
 void AntNet::CalculateAttractiveness(Graph &distance) {
   for (unsigned i = 0U; i < distance.GetDimension(); ++i) {
@@ -79,7 +80,8 @@ void AntNet::AntMovement() {
       m_visited->operator()(ant, location) = 1.0;
       m_ants[ant].vertices.push_back(location);
       location = CalcProbability(ant, location);
-      m_ants[ant].distance += m_distance->operator()(m_ants[ant].vertices.back(), location);
+      m_ants[ant].distance +=
+          m_distance->operator()(m_ants[ant].vertices.back(), location);
     }
     m_ants[ant].vertices.push_back(ant);
     m_ants[ant].distance += m_distance->operator()(location, ant);
@@ -92,7 +94,8 @@ double AntNet::CalcSumAttractivenessPheromone(unsigned ant, unsigned location) {
   for (unsigned city = 0U; city < m_visited->GetDimension(); ++city) {
     if (m_visited->operator()(ant, city) < 0.5) {
       double tau = std::pow(m_pheromone->operator()(location, city), kAlpha);
-      double eta = std::pow(m_attractiveness->operator()(location, city), kBeta);
+      double eta =
+          std::pow(m_attractiveness->operator()(location, city), kBeta);
       sum += tau * eta;
     }
   }
@@ -107,7 +110,8 @@ unsigned AntNet::CalcProbability(unsigned ant, unsigned location) {
   for (unsigned city = 0U; city < m_visited->GetDimension(); ++city) {
     if (m_visited->operator()(ant, city) < 0.5) {
       double tau = std::pow(m_pheromone->operator()(location, city), kAlpha);
-      double eta = std::pow(m_attractiveness->operator()(location, city), kBeta);
+      double eta =
+          std::pow(m_attractiveness->operator()(location, city), kBeta);
       if (mark_sum += tau * eta / sum, mark < mark_sum) {
         location = city;
         break;
@@ -130,6 +134,4 @@ void AntNet::UpdatePheromone() {
   }
 }
 
-void AntNet::SetThreadFlag(const bool flag) {
-  m_thread_flag = flag;
-}
+void AntNet::SetThreadFlag(const bool flag) { m_thread_flag = flag; }
