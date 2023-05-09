@@ -50,14 +50,6 @@ To run the ACO algorithm, execute the following command in the `build` directory
 
 This will run the ACO algorithm to solve the TSP problem for a user-defined matrix. The user can set the matrix for the TSP problem and the number of executions N. The program will display the results of each of the algorithms for the specified matrix and measure the time it takes to execute N times an ACO algorithm applying parallelism and a usual ant algorithm for the user-defined matrix. The obtained time will be displayed.
 
-### Example
-
-To run an example of the console interface, execute the following command in the `build` directory:
-
-```
-> 2  <path-to-graph-file>
-```
-
 This will load the graph from the file specified by `<path-to-graph-file>` and display the menu with the available options. To select an option, enter the corresponding number and follow the instructions on the screen.
 
 ## License
