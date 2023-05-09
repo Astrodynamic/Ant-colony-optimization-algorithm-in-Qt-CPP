@@ -40,12 +40,6 @@ The console interface provides the following functionality:
 2. Run the Atn Colony Optimization
 ![Main menu](data/img/run_algorithm.png)
 
-To run the console interface, execute the following command in the `build` directory:
-
-```
-./ACOAlgorithms
-```
-
 #### ACO Algorithm
 
 To run the ACO algorithm, execute the following command in the `build` directory:
@@ -61,7 +55,7 @@ This will run the ACO algorithm to solve the TSP problem for a user-defined matr
 To run an example of the console interface, execute the following command in the `build` directory:
 
 ```
-./ACOAlgorithms <path-to-graph-file>
+> 2  <path-to-graph-file>
 ```
 
 This will load the graph from the file specified by `<path-to-graph-file>` and display the menu with the available options. To select an option, enter the corresponding number and follow the instructions on the screen.
@@ -69,5 +63,3 @@ This will load the graph from the file specified by `<path-to-graph-file>` and d
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-Implementation of the traveling salesman problem using the ant colony algorithm.
