@@ -1,4 +1,4 @@
-# ACO Algorithms optimization in Qt/CPP
+# Ant colony optimization algorithm in Qt/CPP
 
 This project provides an implementation of the Ant Colony Optimization (ACO) algorithm to solve the Traveling Salesman Problem (TSP). The ACO algorithm is a metaheuristic approach to solve combinatorial optimization problems based on the behavior of ants. The TSP is a classic optimization problem that consists of finding the shortest path that visits a set of cities and returns to the starting city. 
 
